@@ -1,4 +1,4 @@
-### USe of Ifnull and Case-When in Aggregate fn questions
+### USe of IfNull and Case-When in Aggregate fn questions
 
 Select query_name, 
 round(avg(rating/position),2) as quality, 
