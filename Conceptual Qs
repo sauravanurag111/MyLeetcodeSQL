@@ -1,8 +1,21 @@
-### USe of IfNull and Case-When in Aggregate fn questions
+### Use of IfNull and Case-When in Aggregate fn questions
 
+1211. Queries Quality and Percentage
 Select query_name, 
 round(avg(rating/position),2) as quality, 
 round(ifnull(sum(case When rating < 3 Then 1 End)*100/count(query_name),0),2) as poor_query_percentage
 from queries
 where query_name is not null
 group by query_name
+
+-- ALWAYS USE IFNULL WITH CASE-WHEN IN AGG FUNS
+
+Select 
+    Substr(trans_date, 1,7) as month,
+    country, 
+    count(trans_date) as trans_count,
+    sum(ifnull((Case when state = 'approved' then 1 end),0)) as approved_count, 
+    Sum(amount) as trans_total_amount, 
+    sum(ifnull((Case when state = 'approved' then amount end),0)) as approved_total_amount
+from transactions
+group by month, country
